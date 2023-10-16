@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class VectorExercises : MonoBehaviour
@@ -46,7 +47,7 @@ public class VectorExercises : MonoBehaviour
         // Creates an end point for the line to be drawn at vector 2, 3
         endPt = new Vector2(2, 3);
 
-        // Creates a new variable called drawnLine to call the plugin lineFactory
+        // Creates a new variable called drawnLine to call the lineFactory class
         // lineFactory creates a black line from the start point (0,0) and the end point (2,3) with a width of 0.02
         drawnLine = lineFactory.GetLine(startPt, endPt, 0.02f, Color.black);
 
@@ -62,8 +63,31 @@ public class VectorExercises : MonoBehaviour
 
     void Question2b(int n)
     {
+        // For loop to iterate 20 times to draw 20 lines
+        for (int i = 0; i < n; i++)
+        {
+            // Create a start point variable with randomised X and Y coordinates between 5 and -5
+            startPt = new Vector2(Random.Range(-maxX, maxX),
+                Random.Range(-maxY, maxY));
 
+            // Create an end point variable with randomised X and Y coordinates between 5 and -5
+            endPt = new Vector2(Random.Range(-maxX, maxX),
+                Random.Range(-maxY, maxY));
+
+            // Declare values for maxX and maxY coordiantes
+            // This will allow the start points to be between -5 and 5
+            maxX = 5;
+            maxY = 5;
+
+            // Creates a new variable called drawnLine to call the lineFactory class
+            // lineFactory creates a new black line from the randomised start point and randomised end point with a width of 0.02
+            drawnLine = lineFactory.GetLine(startPt, endPt, 0.02f, Color.black);
+
+            // Enable Drawing turned on to allow the lineFactory to draw the line on the scene
+            drawnLine.EnableDrawing(true);
+        }
     }
+
 
     void Question2d()
     {
