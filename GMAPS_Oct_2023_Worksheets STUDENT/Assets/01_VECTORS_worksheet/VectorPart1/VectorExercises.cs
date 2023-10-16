@@ -41,15 +41,7 @@ public class VectorExercises : MonoBehaviour
 
     void Question2a()
     {
-        startPt = new Vector2(0, 0);
-        endPt = new Vector2(2, 3);
 
-        drawnLine = lineFactory.GetLine(startPt, endPt, 0.02f, Color.black);
-
-        drawnLine.EnableDrawing(true);
-
-        Vector2 vec2 = endPt - startPt;
-        Debug.Log("Magnitude = " + vec2.magnitude);
     }
 
     void Question2b(int n)
