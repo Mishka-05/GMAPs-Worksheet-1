@@ -4,7 +4,7 @@ using UnityEngine;
 public class VectorExercises : MonoBehaviour
 {
     [SerializeField] LineFactory lineFactory;
-    [SerializeField] bool Q2a, Q2b, Q2d, Q2e;
+    [SerializeField] bool Q2a, Q2b, Q2c, Q2d, Q2e;
     [SerializeField] bool Q3a, Q3b, Q3c, projection;
 
     private Line drawnLine;
@@ -21,6 +21,8 @@ public class VectorExercises : MonoBehaviour
             Question2a();
         if (Q2b)
             Question2b(20);
+        if (Q2c)
+            Question2c(20);
         if (Q2d)
             Question2d();
         if (Q2e)
@@ -37,7 +39,22 @@ public class VectorExercises : MonoBehaviour
 
     public void CalculateGameDimensions()
     {
+        // Gets the height of the game by taking the camera.main.orthographic size
+        // It is multiplied by 2 to get the full size of the game height.
+        // If this is not done we cannot see the full height of the camera's view and only the height from the center
+        GameHeight = Camera.main.orthographicSize * 2f;
 
+        // Gets the width of the height by multipling the camera aspect ratio by the full size of the game height
+        // The aspect ratio in this case is roughly 3:2, meaning 3 divided by 2 multiplied by GameHeight
+        GameWidth = Camera.main.aspect * GameHeight;
+
+        // Variables to store the GameWidth and GameHeight
+        // GameWidth must be divided by 2 because to reset the maximum size back to only what the camera can see
+        // If we do not divide the width and height by 2, we could end up with coordinates outside of what the camera can see.
+        maxX = GameWidth / 2;
+        minX = -maxX;
+        maxY = GameHeight / 2;
+        minY = -maxY;
     }
 
     void Question2a()
@@ -83,11 +100,34 @@ public class VectorExercises : MonoBehaviour
             // lineFactory creates a new black line from the randomised start point and randomised end point with a width of 0.02
             drawnLine = lineFactory.GetLine(startPt, endPt, 0.02f, Color.black);
 
-            // Enable Drawing turned on to allow the lineFactory to draw the line on the scene
+            // EnableDrawing turned on to allow the lineFactory to draw the line on the scene
             drawnLine.EnableDrawing(true);
         }
     }
 
+    void Question2c(int n)
+    {
+        // Call the CalculateGameDimensions() function to get the minimum and maximum coordinates for X and Y
+        CalculateGameDimensions();
+
+        // For loop to iterate 20 times to draw 20 lines
+        for (int i = 0; i < n; i++)
+        {
+            // Create a start point variable with randomised X and Y coordinates anywhere on the game screen
+            startPt = new Vector2(Random.Range(minX, maxX),
+                Random.Range(minY, maxY));
+            // Create an end point variable with randomised X and Y coordinates anywhere on the game screen
+            endPt = new Vector2(Random.Range(minX, maxX),
+                Random.Range(minY, maxY));
+
+            // Creates a new variable called drawnLine to call the lineFactory class
+            // lineFactory creates a new black line from the randomisde start point and randomised end point with a width of 0.02
+            drawnLine = lineFactory.GetLine(startPt, endPt, 0.02f, Color.black);
+
+            // EnableDrawing turned on to allow the lineFactory to draw the line on the scene
+            drawnLine.EnableDrawing(true);
+        }
+    }
 
     void Question2d()
     {
