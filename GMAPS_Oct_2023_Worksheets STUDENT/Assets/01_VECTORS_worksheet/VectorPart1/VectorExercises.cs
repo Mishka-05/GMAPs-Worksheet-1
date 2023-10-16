@@ -144,21 +144,21 @@ public class VectorExercises : MonoBehaviour
 
     void Question2e(int n)
     {
+        // Call the CalculateGameDimensions() function to get the minimum and maximum coordiantes for X and Y
+        CalculateGameDimensions();
+        // For loop to iterate 20 times to draw 20 arrows
         for (int i = 0; i < n; i++)
         {
-            startPt = new Vector2(
-                Random.Range(-maxX, maxX), 
-                Random.Range(-maxY, maxY));
-
-            // Your code here
-            // ...
-
-            //DebugExtension.DebugArrow(
-            //    new Vector3(0, 0, 0),
-            //    // Your code here,
-            //    Color.white,
-            //    60f);
-        }  
+            // Create an arrow in 3D
+            DebugExtension.DebugArrow(
+                // Set the start point of the arrow's (x, y, z) coordinates to the center)
+                new Vector3(0, 0, 0),
+                // Randomizes the end point of the arrow's (x, y, z) coordinates based on the size of the game screen.
+                // z-coordinate has no maximum hence -minY and minY are used as specified by the worksheet :)
+                new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY), Random.Range(-minY, minY)),
+                Color.white,
+                60f);
+        }
     }
 
     public void Question3a()
