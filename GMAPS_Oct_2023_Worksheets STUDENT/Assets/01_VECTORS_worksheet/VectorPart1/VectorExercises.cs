@@ -41,7 +41,23 @@ public class VectorExercises : MonoBehaviour
 
     void Question2a()
     {
+        // Creates a starting point for the line to be drawn at vector 0, 0
+        startPt = new Vector2(0, 0);
+        // Creates an end point for the line to be drawn at vector 2, 3
+        endPt = new Vector2(2, 3);
 
+        // Creates a new variable called drawnLine to call the plugin lineFactory
+        // lineFactory creates a black line from the start point (0,0) and the end point (2,3) with a width of 0.02
+        drawnLine = lineFactory.GetLine(startPt, endPt, 0.02f, Color.black);
+
+        // EnableDrawing turned on to allow the lineFactory to draw the line on the scene
+        drawnLine.EnableDrawing(true);
+
+        // Gets the distance between the end point and the start point
+        Vector2 vec2 = endPt - startPt;
+
+        // Prints the magnitude (length) of the line drawn in the console.
+        Debug.Log("Magnitude = " + vec2.magnitude);
     }
 
     void Question2b(int n)
