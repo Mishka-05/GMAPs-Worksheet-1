@@ -55,6 +55,7 @@ public class VectorExercises : MonoBehaviour
         minX = -maxX;
         maxY = GameHeight / 2;
         minY = -maxY;
+
     }
 
     void Question2a()
@@ -131,7 +132,14 @@ public class VectorExercises : MonoBehaviour
 
     void Question2d()
     {
-
+       // Create an arrow in 3D
+        DebugExtension.DebugArrow(
+            // Start point of the arrow with the (x, y, z) coordinates
+            new Vector3(0, 0, 0),
+            // End point of the arrow with the (x, y, z) coordinates
+            new Vector3(-5, -5, 0),
+            Color.red,
+            60f);
     }
 
     void Question2e(int n)
