@@ -163,19 +163,31 @@ public class VectorExercises : MonoBehaviour
 
     public void Question3a()
     {
+        // Creating new vectors a, b and c
+        // Using HVector2D class constructor.
         HVector2D a = new HVector2D(3, 5);
-        //HVector2D b = // Your code here;
-        //HVector2D c = // Your code here;
+        HVector2D b = new HVector2D(-4, 2);
+        HVector2D c = new HVector2D(7, 3);
 
+        // Drwaing 3 arrows using the coordinates of a, b and c
+        // Converting a, b and c to 3D vectors using the ToUnityVector3() function created in HVector2D.cs
         DebugExtension.DebugArrow(Vector3.zero, a.ToUnityVector3(), Color.red, 60f);
-        // Your code here
-        // ...
+        DebugExtension.DebugArrow(Vector3.zero, b.ToUnityVector3(), Color.green, 60f);
+        DebugExtension.DebugArrow(Vector3.zero, c.ToUnityVector3(), Color.white, 60f);
 
-        // Your code here
+        // Drawing a 4th arrow with the starting coordinate from the head of the "a" arrow.
+        DebugExtension.DebugArrow(a.ToUnityVector3(), -b.ToUnityVector3(), Color.green, 60f);
 
-        //Debug.Log("Magnitude of a = " + // Your code here.ToString("F2"));
-        // Your code here
-        // ...
+        // Creating 3 vector 3 variables to get the magnitude of a, b and c
+        Vector3 a_mag = a.ToUnityVector3();
+        Vector3 b_mag = b.ToUnityVector3();
+        Vector3 c_mag = c.ToUnityVector3();
+
+        // Printing the magnitude of arrows a, b and c in the console.
+        // Printing the float to only 2 decimal places by using ToString("F2") which prints the first 2 decimal points.
+        Debug.Log("Magnitude of a = " + a_mag.magnitude.ToString("F2"));
+        Debug.Log("Magnitude of b = " + b_mag.magnitude.ToString("F2"));
+        Debug.Log("Magnitude of b = " + c_mag.magnitude.ToString("F2"));
     }
 
     public void Question3b()
