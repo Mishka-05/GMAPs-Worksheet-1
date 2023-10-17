@@ -192,11 +192,13 @@ public class VectorExercises : MonoBehaviour
 
     public void Question3b()
     {
-        // Your code here
-        // ...
+        // Creating new vector a
+        HVector2D a = new HVector2D(3, 5);
 
-        //DebugExtension.DebugArrow(Vector3.zero, a.ToUnityVector3(), Color.red, 60f);
-        // Your code here
+        // Drawing arrow a
+        DebugExtension.DebugArrow(Vector3.zero, a.ToUnityVector3(), Color.red, 60f);
+        // Drawing arrow b that has twice the scale of a
+        DebugExtension.DebugArrow(new Vector3(1, 0, 0), a.ToUnityVector3() * 2, Color.green, 60f);
     }
 
     public void Question3c()
