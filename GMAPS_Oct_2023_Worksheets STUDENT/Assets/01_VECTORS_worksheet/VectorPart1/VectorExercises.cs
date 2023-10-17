@@ -167,7 +167,7 @@ public class VectorExercises : MonoBehaviour
         // Using HVector2D class constructor.
         HVector2D a = new HVector2D(3, 5);
         HVector2D b = new HVector2D(-4, 2);
-        HVector2D c = new HVector2D(7, 3);
+        HVector2D c = a - b;
 
         // Drwaing 3 arrows using the coordinates of a, b and c
         // Converting a, b and c to 3D vectors using the ToUnityVector3() function created in HVector2D.cs
@@ -179,15 +179,15 @@ public class VectorExercises : MonoBehaviour
         DebugExtension.DebugArrow(a.ToUnityVector3(), -b.ToUnityVector3(), Color.green, 60f);
 
         // Creating 3 vector 3 variables to get the magnitude of a, b and c
-        Vector3 a_mag = a.ToUnityVector3();
-        Vector3 b_mag = b.ToUnityVector3();
-        Vector3 c_mag = c.ToUnityVector3();
+        float a_mag = a.Magnitude();
+        float b_mag = b.Magnitude();
+        float c_mag = c.Magnitude();
 
         // Printing the magnitude of arrows a, b and c in the console.
         // Printing the float to only 2 decimal places by using ToString("F2") which prints the first 2 decimal points.
-        Debug.Log("Magnitude of a = " + a_mag.magnitude.ToString("F2"));
-        Debug.Log("Magnitude of b = " + b_mag.magnitude.ToString("F2"));
-        Debug.Log("Magnitude of b = " + c_mag.magnitude.ToString("F2"));
+        Debug.Log("Magnitude of a = " + a_mag.ToString("F2"));
+        Debug.Log("Magnitude of b = " + b_mag.ToString("F2"));
+        Debug.Log("Magnitude of b = " + c_mag.ToString("F2"));
     }
 
     public void Question3b()
@@ -203,7 +203,18 @@ public class VectorExercises : MonoBehaviour
 
     public void Question3c()
     {
+        // Creating new vector a
+        HVector2D a = new HVector2D(3, 5);
 
+        // Drawing arrow a
+        DebugExtension.DebugArrow(Vector3.zero, a.ToUnityVector3(), Color.red, 60f);
+
+        // Using normalize function to normalize the vector
+        a.Normalize();
+        // Drawing arrow a again after normalizing
+        DebugExtension.DebugArrow(new Vector3(1, 0, 0), a.ToUnityVector3(), Color.green, 60f);
+        // Printing magnitude of vector a after normalizing
+        Debug.Log(a.Magnitude().ToString("F2"));
     }
 
     public void Projection()

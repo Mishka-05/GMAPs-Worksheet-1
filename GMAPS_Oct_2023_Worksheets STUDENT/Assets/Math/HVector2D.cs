@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 //[Serializable]
 public class HVector2D
@@ -30,50 +31,94 @@ public class HVector2D
         h = 1.0f;
     }
 
-    // public static HVector2D operator +( /*???*/)
-    // {
+    public static HVector2D operator +(HVector2D a, HVector2D b)
+    {
+        float coordx = a.x + b.x;
+        float coordy = a.y + b.y;
+        return new HVector2D(coordx, coordy);
+    }
 
-    // }
+    public static HVector2D operator -(HVector2D a, HVector2D b)
+    {
+        float coordx = a.x - b.x;
+        float coordy = a.y - b.y;
+        return new HVector2D(coordx, coordy);
+    }
 
-    // public static HVector2D operator -(/*???*/)
-    // {
+    public static HVector2D operator *(HVector2D a, HVector2D b)
+    {
+        float coordx = a.x * b.x;
+        float coordy = a.y * b.y;
+        return new HVector2D(coordx, coordy);
+    }
 
-    // }
+    public static HVector2D operator /(HVector2D a, HVector2D b)
+    {
+        float coordx = a.x / b.x;
+        float coordy = a.y / b.y;
+        return new HVector2D(coordx, coordy);
+    }
 
-    // public static HVector2D operator *(/*???*/)
-    // {
+    public float Magnitude()
+    {
+        // Magnitude takes the square root of x^2 + y^2
+        // Pythagorean theorem of a^2 + b^2 = c^2, this is to find c
+        float magnitude = (float)Math.Sqrt(x * x + y * y);
+        return magnitude;
+    }
 
-    // }
+    public void Normalize()
+    {
+        // We need to get the magnitude again in order to do the normalization
+        float magnitude = Magnitude();
+        
+        // This is to check to ensure that the vector has magnitude
+        // Otherwise it would attempt to divide by 0
+        if (magnitude != 0)
+        {
+            // Normalize is to convert the vector's magnitude to a value of 1
+            // A normalized vector will still maintain its original direction
+            x /= magnitude;
+            y /= magnitude;
+        }
+    }
 
-    // public static HVector2D operator /(/*???*/)
-    // {
+    public float DotProduct(HVector2D a, HVector2D b)
+    {
+        return a.x * b.x + a.y * b.y;
+    }
 
-    // }
+    public HVector2D Projection(HVector2D a, HVector2D b)
+    {
+        float dot = DotProduct(a, b);
+        float magnitudeSquared = a.Magnitude() * b.Magnitude();
 
-    // public float Magnitude()
-    // {
+        if (magnitudeSquared != 0)
+        {
+            float scalar = dot / magnitudeSquared;
+            return new HVector2D(a.x * scalar, a.y * scalar);
+        }
+        else
+        {
+            return new HVector2D(0, 0);
+        }
+    }
 
-    // }
+    public float FindAngle(HVector2D a, HVector2D b)
+    {
+        float dot = DotProduct(a, b);
+        float magnitudeProduct = a.Magnitude() * b.Magnitude();
 
-    // public void Normalize()
-    // {
-
-    // }
-
-    // public float DotProduct(/*???*/)
-    // {
-
-    // }
-
-    // public HVector2D Projection(/*???*/)
-    // {
-
-    // }
-
-    // public float FindAngle(/*???*/)
-    // {
-
-    // }
+        if (magnitudeProduct != 0)
+        {
+            float cosineTheta = dot / magnitudeProduct;
+            return (float)Math.Acos(cosineTheta);
+        }
+        else
+        {
+            return 0;
+        }
+    }
 
     public Vector2 ToUnityVector2()
     {
