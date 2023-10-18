@@ -85,6 +85,7 @@ public class HVector2D
 
     public float DotProduct(HVector2D a, HVector2D b)
     {
+        Debug.Log("Dot product: " + (a.x * b.x + a.y * b.y));
         return a.x * b.x + a.y * b.y;
     }
 
@@ -92,10 +93,13 @@ public class HVector2D
     {
         float dot = DotProduct(a, b);
         float magnitudeSquared = a.Magnitude() * b.Magnitude();
+        Debug.Log("Magnitude Squares: " + magnitudeSquared);
 
         if (magnitudeSquared != 0)
         {
             float scalar = dot / magnitudeSquared;
+            Debug.Log("Scalar: " + scalar);
+            Debug.Log("(" + (a.x * scalar) + ", " + (a.y * scalar) + ")");
             return new HVector2D(a.x * scalar, a.y * scalar);
         }
         else
@@ -122,12 +126,12 @@ public class HVector2D
 
     public Vector2 ToUnityVector2()
     {
-        return new Vector2(x, y); // change this
+        return new Vector2(x, y);
     }
 
     public Vector3 ToUnityVector3()
     {
-        return new Vector3(x, y, 0); // change this
+        return new Vector3(x, y, 0);
     }
 
     // public void Print()
