@@ -22,23 +22,22 @@ public class Mario : MonoBehaviour
         // gravity must act on the player
         // so the 2 points must be the player and the planet
         gravityDir = planet.position - transform.position;
-        Debug.Log(gravityDir);
-
-        /*moveDir = new Vector3(*//*change this*//*, 0f);
+        moveDir = new Vector3(gravityDir.y, -gravityDir.x, 0f);
         moveDir = moveDir.normalized * -1f;
+        Debug.Log(moveDir);
+        
+        rb.AddForce(moveDir * force);
 
-        rb.AddForce(*//*change this*//*);
+        gravityNorm = gravityDir.normalized;
+        rb.AddForce(gravityNorm * gravityStrength);
 
-        gravityNorm = *//*change this*//*;
-        rb.*//*change this*//*(gravityNorm * gravityStrength);
+        /*float angle = Vector3.SignedAngle(Vector3.up, gravityDir, Vector3.forward);
 
-        float angle = Vector3.SignedAngle(*//*change this*//*, *//*change this*//*, Vector3.forward);
+        rb.MoveRotation(Quaternion.Euler(0, 0, angle));*/
 
-        rb.MoveRotation(Quaternion.Euler(*//*change this*//*));
+        DebugExtension.DebugArrow(transform.position, gravityDir, Color.red);
 
-        DebugExtension.DebugArrow(*//*change this*//*, *//*change this*//*, Color.red);
-
-        DebugExtension.DebugArrow(*//*change this*//*, *//*change this*//*, Color.blue);*/
+        DebugExtension.DebugArrow(transform.position, moveDir, Color.blue);
     }
 }
 

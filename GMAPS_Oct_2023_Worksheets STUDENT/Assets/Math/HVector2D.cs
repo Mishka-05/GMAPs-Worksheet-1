@@ -55,8 +55,7 @@ public class HVector2D
     {
         // Magnitude takes the square root of x^2 + y^2
         // Pythagorean theorem of a^2 + b^2 = c^2, this is to find c
-        float magnitude = (float)Math.Sqrt(x * x + y * y);
-        return magnitude;
+        return (float)Math.Sqrt(x * x + y * y);
     }
 
     public void Normalize()
@@ -85,7 +84,7 @@ public class HVector2D
     {
         float dot = DotProduct(a, b);
         float magnitudeSquared = a.Magnitude() * b.Magnitude();
-        Debug.Log("Magnitude Squares: " + magnitudeSquared);
+        Debug.Log("Magnitude Squared: " + magnitudeSquared);
 
         if (magnitudeSquared != 0)
         {
