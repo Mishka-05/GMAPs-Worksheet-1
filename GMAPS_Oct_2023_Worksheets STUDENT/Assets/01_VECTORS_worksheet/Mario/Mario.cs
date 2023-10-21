@@ -19,24 +19,27 @@ public class Mario : MonoBehaviour
 
     void FixedUpdate()
     {
-        // gravity must act on the player
-        // so the 2 points must be the player and the planet
+        // Gravity must act on the player
+        // So the 2 points must be the player and the planet
         gravityDir = planet.position - transform.position;
+        
+        // Set the move direction of the astronaut to rotate around the center of the planet
         moveDir = new Vector3(gravityDir.y, -gravityDir.x, 0f);
         moveDir = moveDir.normalized * -1f;
-        Debug.Log(moveDir);
-        
+        // Adds the movement force to the player
         rb.AddForce(moveDir * force);
 
+        // Normalizing the gravity vector to be able to apply the strength
         gravityNorm = gravityDir.normalized;
+        // Applying gravity force on the player by multiplying the magnitude by the gravityStrength (1 * 5)
         rb.AddForce(gravityNorm * gravityStrength);
 
-        /*float angle = Vector3.SignedAngle(Vector3.up, gravityDir, Vector3.forward);
-
-        rb.MoveRotation(Quaternion.Euler(0, 0, angle));*/
+        // Calculates the angle that the astronaut must turn
+        float angle = Vector3.SignedAngle(Vector3.right, moveDir, Vector3.forward);
+        // Applies the angle to the astronaut Rigidbody2D
+        rb.MoveRotation(Quaternion.Euler(0, 0, angle));
 
         DebugExtension.DebugArrow(transform.position, gravityDir, Color.red);
-
         DebugExtension.DebugArrow(transform.position, moveDir, Color.blue);
     }
 }
