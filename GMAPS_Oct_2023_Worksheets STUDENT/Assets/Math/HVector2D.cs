@@ -74,45 +74,20 @@ public class HVector2D
         }
     }
 
-    public float DotProduct(HVector2D a, HVector2D b)
+    public float DotProduct(HVector2D vec)
     {
-        Debug.Log("Dot product: " + (a.x * b.x + a.y * b.y));
-        return a.x * b.x + a.y * b.y;
+        return (x * vec.x + y * vec.y);
     }
 
-    public HVector2D Projection(HVector2D a, HVector2D b)
+    public HVector2D Projection(HVector2D b)
     {
-        float dot = DotProduct(a, b);
-        float magnitudeSquared = a.Magnitude() * b.Magnitude();
-        Debug.Log("Magnitude Squared: " + magnitudeSquared);
-
-        if (magnitudeSquared != 0)
-        {
-            float scalar = dot / magnitudeSquared;
-            Debug.Log("Scalar: " + scalar);
-            Debug.Log("(" + (a.x * scalar) + ", " + (a.y * scalar) + ")");
-            return new HVector2D(a.x * scalar, a.y * scalar);
-        }
-        else
-        {
-            return new HVector2D(0, 0);
-        }
+        HVector2D proj = b * (DotProduct(b) / b.DotProduct(b));
+        return proj;
     }
 
-    public float FindAngle(HVector2D a, HVector2D b)
+    public float FindAngle(HVector2D vec)
     {
-        float dot = DotProduct(a, b);
-        float magnitudeProduct = a.Magnitude() * b.Magnitude();
-
-        if (magnitudeProduct != 0)
-        {
-            float cosineTheta = dot / magnitudeProduct;
-            return (float)Math.Acos(cosineTheta);
-        }
-        else
-        {
-            return 0;
-        }
+        return ((float)Mathf.Acos(DotProduct(vec) / (Magnitude() * vec.Magnitude()))) * Mathf.Rad2Deg;
     }
 
     public Vector2 ToUnityVector2()

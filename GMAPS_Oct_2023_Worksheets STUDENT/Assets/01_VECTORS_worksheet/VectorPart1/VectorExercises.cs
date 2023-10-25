@@ -226,12 +226,9 @@ public class VectorExercises : MonoBehaviour
 
         // Creating vector v1, with the coordinates (4, 0)
         HVector2D v1 = b - a;
-        // Creating vector v2 with the coordiantes (2, 0)
-        // Required in order to keep the Y-coordinate as 0 to project properly onto the b vector
-        HVector2D v2 = v1 / 2;
-
+        
         // Projecting the v2 vector 
-        HVector2D proj = v2.Projection(v2, c);
+        HVector2D proj = c.Projection(v1);
 
         DebugExtension.DebugArrow(a.ToUnityVector3(), b.ToUnityVector3(), Color.red, 60f);
         DebugExtension.DebugArrow(a.ToUnityVector3(), c.ToUnityVector3(), Color.yellow, 60f);
