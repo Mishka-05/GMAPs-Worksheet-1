@@ -66,8 +66,10 @@
     <Compile Include="Assets\01_VECTORS_worksheet\VectorPart1\VectorExercises.cs" />
     <Compile Include="Assets\Math\HVector2D.cs" />
     <Compile Include="Assets\01_VECTORS_worksheet\Soccer\SoccerPlayer.cs" />
+    <Compile Include="Assets\Math\HMatrix2D.cs" />
     <Compile Include="Assets\Resources_3rd Party\DebugDrawingExtension\DebugExtension.cs" />
     <Compile Include="Assets\01_VECTORS_worksheet\Mario\MarioHVector2D.cs" />
+    <Compile Include="Assets\Math\TestMatrix.cs" />
     <Compile Include="Assets\Resources_3rd Party\Ruler\zzVerticalRuler.cs" />
     <Compile Include="Assets\01_VECTORS_worksheet\Mario\Mario.cs" />
     <Compile Include="Assets\01_VECTORS_worksheet\Soccer\Player.cs" />
