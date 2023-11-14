@@ -204,12 +204,12 @@ public class HMatrix2D : MonoBehaviour
 
     }
 
-    public void SetRotationMat(float rotDeg)
+    public void SetRotationMat(float rotDeg)    
     {
         SetIdentity();
         float rad = rotDeg * Mathf.Deg2Rad;
         Entries[0, 0] = Mathf.Cos(rad);
-        Entries[0, 1] = Mathf.Sin(rad);
+        Entries[0, 1] = -Mathf.Sin(rad);
         Entries[1, 0] = Mathf.Sin(rad);
         Entries[1, 1] = Mathf.Cos(rad);
     }
