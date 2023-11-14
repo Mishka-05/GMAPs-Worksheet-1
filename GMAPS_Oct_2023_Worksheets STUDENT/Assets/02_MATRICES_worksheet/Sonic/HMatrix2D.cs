@@ -111,8 +111,8 @@ public class HMatrix2D : MonoBehaviour
 
     public static HVector2D operator *(HMatrix2D left, HVector2D right)
     {
-        return new HVector2D(left.Entries[0, 0] * right.x + left.Entries[0, 1] * right.x + left.Entries[0, 2] * right.x,
-                             left.Entries[1, 0] * right.x + left.Entries[1, 1] * right.x + left.Entries[1, 2] * right.x);
+        return new HVector2D(left.Entries[0, 0] * right.x + left.Entries[0, 1] * right.y + left.Entries[0, 2] * right.h,
+                             left.Entries[1, 0] * right.x + left.Entries[1, 1] * right.y + left.Entries[1, 2] * right.h);
     }
 
     public static HMatrix2D operator *(HMatrix2D left, HMatrix2D right)
@@ -199,8 +199,8 @@ public class HMatrix2D : MonoBehaviour
     public void SetTranslationMat(float transX, float transY)
     {
         SetIdentity();
-        Entries[0, 1] = transX;
-        Entries[1, 0] = transY;
+        Entries[0, 2] = transX;
+        Entries[1, 2] = transY;
 
     }
 
