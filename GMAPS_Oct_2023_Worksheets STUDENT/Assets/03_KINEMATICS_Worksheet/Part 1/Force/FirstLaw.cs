@@ -10,7 +10,7 @@
      void Start()
      {
          rb = GetComponent<Rigidbody>();
-         rb.AddForce(force);
+         rb.AddForce(force, ForceMode.Impulse);
      }
 
      void FixedUpdate()
