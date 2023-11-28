@@ -1,53 +1,58 @@
-// using System;
-// using System.Collections;
-// using System.Collections.Generic;
-// using UnityEngine;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
 
-// public class Ball2D : MonoBehaviour
-// {
-//     public HVector2D Position = new HVector2D(0, 0);
-//     public HVector2D Velocity = new HVector2D(0, 0);
-    
-//     [HideInInspector]
-//     public float Radius;
+public class Ball2D : MonoBehaviour
+{
+    public HVector2D Position = new HVector2D(0, 0);
+    public HVector2D Velocity = new HVector2D(0, 0);
 
-//     private void Start()
-//     {
-//         Position.x = transform.position.x;
-//         Position.y = transform.position.y;
+    //[HideInInspector]
+     float BallRadius;
 
-//         Sprite sprite = GetComponent<SpriteRenderer>().sprite;
-//         Vector2 sprite_size = sprite.rect.size;
-//         Vector2 local_sprite_size = sprite_size / sprite.pixelsPerUnit;
-//         Radius = local_sprite_size.x / 2f;
-//     }
+     private void Start()
+     {
+         Position.x = transform.position.x;
+         Position.y = transform.position.y;
 
-//     public bool IsCollidingWith(float x, float y)
-//     {
-//         float distance = /*your code here*/;
-//         return distance <= Radius;
-//     }
+         Sprite sprite = GetComponent<SpriteRenderer>().sprite;
+         BallRadius = sprite.bounds.size.x / 2f;
 
-//     public bool IsCollidingWith(Ball2D other)
-//     {
-//         float distance = Util.FindDistance(Position, other.Position);
-//         return distance <= Radius + other.Radius;
-//     }
+        //HVector2D a = new HVector2D(0, 0);
+        //HVector2D b = new HVector2D(5, 0);
+        //float distance = Util.FindDistance(a, b);
+     }
 
-//     public void FixedUpdate()
-//     {
-//         UpdateBall2DPhysics(Time.deltaTime);
-//     }
+     public bool IsCollidingWith(float x, float y)
+     {
+         
+         float distance = Util.FindDistance(Position, new HVector2D(x, y));
+        print($"2 distance: {distance}, rad: {BallRadius}");
+        return distance <= BallRadius;
+     }
 
-//     private void UpdateBall2DPhysics(float deltaTime)
-//     {
-//         float displacementX = /*your code here*/;
-//         float displacementY = /*your code here*/;
+     public bool IsCollidingWith(Ball2D other)
+     {
+         float distance = Util.FindDistance(Position, other.Position);
+         return distance <= BallRadius + other.BallRadius;
+     }
 
-//         Position.x += /*your code here*/;
-//         Position.y += /*your code here*/;
+    public void FixedUpdate()
+    {
+        UpdateBall2DPhysics(Time.deltaTime);
+    }
 
-//         transform.position = new Vector2(/*your code here*/);
-//     }
-// }
+    private void UpdateBall2DPhysics(float deltaTime)
+    {
+        float displacementX = Velocity.x;
+        float displacementY = Velocity.y;
+
+        Position.x += displacementX * deltaTime;
+        Position.y += displacementY * deltaTime;
+
+        transform.position = new Vector2(Position.x, Position.y);
+    }
+}
 
