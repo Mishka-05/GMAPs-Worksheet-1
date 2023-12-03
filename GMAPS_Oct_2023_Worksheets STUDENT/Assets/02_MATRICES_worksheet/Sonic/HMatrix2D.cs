@@ -44,6 +44,10 @@ public class HMatrix2D : MonoBehaviour
         Entries[2, 2] = m22;
     }
     
+    // This sets the identity of the matrix 
+    // 1 0 0
+    // 0 1 0
+    // 0 0 1
     public void SetIdentity()
     {
         /*for (int y = 0; y < 3; y++)
@@ -196,17 +200,39 @@ public class HMatrix2D : MonoBehaviour
     //    return // your code here
     // }
         
+    // This creates a matrix with a translation value
+    // This matrix represents a 2D translation transformation
     public void SetTranslationMat(float transX, float transY)
     {
+        // This is done by first creating a matrix as an identity matrix
+        // 1 0 0
+        // 0 1 0
+        // 0 0 1
         SetIdentity();
+
+        // Then we set the coordinates of the new translation into the matrix
+        // 1   0 transX
+        // 0   1 transY
+        // 0   0   1
         Entries[0, 2] = transX;
         Entries[1, 2] = transY;
 
     }
 
+    // This creates a matrix with a rotation value
+    // This matrix represents a 2D rotation transformation
     public void SetRotationMat(float rotDeg)    
     {
+        // This is done by first creating a matrix as an identity matrix
+        // 1 0 0
+        // 0 1 0
+        // 0 0 1
         SetIdentity();
+
+        // Then we calculate the rotation angle in degrees and convert to radians
+        // cos(rad) -sin(rad) 0
+        // sin(rad) cos(rad)  0
+        //    0        0      1
         float rad = rotDeg * Mathf.Deg2Rad;
         Entries[0, 0] = Mathf.Cos(rad);
         Entries[0, 1] = -Mathf.Sin(rad);
