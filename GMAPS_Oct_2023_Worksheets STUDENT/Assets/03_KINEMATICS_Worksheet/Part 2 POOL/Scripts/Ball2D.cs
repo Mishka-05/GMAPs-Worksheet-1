@@ -10,7 +10,7 @@ public class Ball2D : MonoBehaviour
     public HVector2D Velocity = new HVector2D(0, 0);
 
     //[HideInInspector]
-     float BallRadius;
+    public float BallRadius;
 
      private void Start()
      {
